@@ -84,7 +84,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
   };
 
   const handleCopyLink = () => {
-    const cleanUrl = `https://startup-sphere.vercel.app/articles/${article.slug}`;
+    const cleanUrl = `https://startup-sphere-seo.vercel.app/articles/${article.slug}`;
     navigator.clipboard?.writeText(cleanUrl);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
