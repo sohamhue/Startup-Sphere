@@ -1,0 +1,6 @@
+{
+  "name": "Startup Sphere — Startups, Business & Entrepreneurship",
+  "description": "High-caliber editorial publication and founder intelligence platform featuring startup success stories, actionable business strategies, AI playbooks, and an interactive AI Business Idea Generator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
