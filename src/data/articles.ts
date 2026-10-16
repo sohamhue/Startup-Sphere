@@ -1,10 +1,22 @@
 import { Article } from '../types/blog';
 
-// High-fidelity image paths generated for Startup Sphere
-const HERO_FOUNDER_WORKSPACE = '/src/assets/images/hero_founder_workspace_1792118947513.jpg';
-const ARTICLE_AI_STARTUP_LAB = '/src/assets/images/article_ai_startup_lab_1792118949366.jpg';
-const ARTICLE_FINTECH_GROWTH = '/src/assets/images/article_fintech_growth_1792118949183.jpg';
-const ARTICLE_COFFEE_BRAND = '/src/assets/images/article_coffee_brand_1792118948965.jpg';
+// High-fidelity image assets bundled directly by Vite for guaranteed zero-breakage rendering
+import heroFounderWorkspace from '../assets/images/hero_founder_workspace_1792118947513.jpg';
+import articleAiStartupLab from '../assets/images/article_ai_startup_lab_1792118949366.jpg';
+import articleFintechGrowth from '../assets/images/article_fintech_growth_1792118949183.jpg';
+import articleCoffeeBrand from '../assets/images/article_coffee_brand_1792118948965.jpg';
+import articleGrowthAnalytics from '../assets/images/article_growth_analytics_1792120324817.jpg';
+import articleLaundromatHvac from '../assets/images/article_laundromat_hvac_1792120324768.jpg';
+import articleMicroSaasCode from '../assets/images/article_micro_saas_code_1792120325766.jpg';
+import articleFounderLateNight from '../assets/images/article_founder_late_night_1792120325552.jpg';
+
+// Bulletproof author avatars generated as SVG data URIs (never blocked by adblockers, sandboxes, or CDN outages)
+const createAvatar = (initials: string, bg: string) =>
+  `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" rx="50" fill="${encodeURIComponent(bg)}"/><text x="50%" y="54%" font-family="system-ui, sans-serif" font-weight="700" font-size="36" fill="%23ffffff" dominant-baseline="middle" text-anchor="middle">${initials}</text></svg>`;
+
+const AVATAR_ELENA = createAvatar('ER', '#78350f'); // Warm amber/bronze
+const AVATAR_JULIAN = createAvatar('JS', '#1c1917'); // Antique charcoal
+const AVATAR_MAYA = createAvatar('ML', '#1e3a8a'); // Deep lapis
 
 export const CATEGORIES = [
   'Startup Success Stories',
@@ -26,12 +38,12 @@ export const ARTICLES: Article[] = [
     publishedDate: 'March 14, 2026',
     featured: true,
     trendingRank: 1,
-    coverImage: HERO_FOUNDER_WORKSPACE,
+    coverImage: heroFounderWorkspace,
     coverCaption: 'Founder workspace during RetainKit’s Series A transition phase in Austin, Texas.',
     author: {
       name: 'Elena Rostova',
       role: 'Founding Partner, Meridian Capital',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+      avatar: AVATAR_ELENA,
       bio: 'Ex-operator turned early-stage enterprise software investor. Writes on cohort retention and capital efficiency.',
     },
     summary: 'A deep retrospective on RetainKit: how relentless focus on one painful metric (failed credit card payment recovery) produced a $140M cash acquisition in 48 months.',
@@ -77,7 +89,7 @@ The critical lesson for early-stage builders: do not build platforms until you h
         id: 'c1',
         authorName: 'David K., Founder @ Metriq',
         authorRole: 'Bootstrapped SaaS Founder',
-        authorAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+        authorAvatar: createAvatar('DK', '#334155'),
         createdAt: '2 days ago',
         content: 'This matches our exact experience. Involuntary churn was quietly draining 8% of our MRR. Fix the plumbing before pouring more ad spend into top of funnel.',
         likes: 19,
@@ -86,7 +98,7 @@ The critical lesson for early-stage builders: do not build platforms until you h
         id: 'c2',
         authorName: 'Sarah Jenkins',
         authorRole: 'Product Lead @ Stripe Partner Network',
-        authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
+        authorAvatar: createAvatar('SJ', '#0f766e'),
         createdAt: '1 day ago',
         content: 'Fascinating breakdown on the 14-person headcount. Software leverage in 2026 is truly unprecedented.',
         likes: 11,
@@ -103,12 +115,12 @@ The critical lesson for early-stage builders: do not build platforms until you h
     publishedDate: 'March 11, 2026',
     featured: false,
     trendingRank: 4,
-    coverImage: ARTICLE_COFFEE_BRAND,
-    coverCaption: 'High-volume logistics and warehouse automation in commercial hygiene fulfillment.',
+    coverImage: articleLaundromatHvac,
+    coverCaption: 'High-volume logistics, fleet management, and cleanroom fulfillment facility.',
     author: {
       name: 'Julian Sterling',
       role: 'Principal Editor, Startup Sphere',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+      avatar: AVATAR_JULIAN,
       bio: 'Investigates bootstrapped capital structures, niche enterprise monopolies, and non-dilutive startup growth.',
     },
     summary: 'How an unglamorous uniform and cleanroom laundry service digitized regional industrial supply chains, using upfront customer deposits to finance fleet expansion.',
@@ -145,12 +157,12 @@ Every dollar earned was recycled into specialized RFID tracking chips sewn into 
     publishedDate: 'March 8, 2026',
     featured: false,
     trendingRank: 2,
-    coverImage: ARTICLE_FINTECH_GROWTH,
-    coverCaption: 'Blueprint and architecture diagrams for lean micro-SaaS ventures.',
+    coverImage: articleMicroSaasCode,
+    coverCaption: 'High-leverage micro-SaaS engineering workstation with automated cloud deployment pipelines.',
     author: {
       name: 'Elena Rostova',
       role: 'Founding Partner, Meridian Capital',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+      avatar: AVATAR_ELENA,
       bio: 'Ex-operator turned early-stage enterprise software investor.',
     },
     summary: 'A curated breakdown of 12 profitable, underserved software wedges in compliance, local commerce, logistics, and API maintenance with instant unit economics.',
@@ -185,7 +197,7 @@ Below are four of the twelve deep-dive concepts explored in our research batch:
         id: 'c3',
         authorName: 'Alex Rivera',
         authorRole: 'Indie Hacker',
-        authorAvatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+        authorAvatar: createAvatar('AR', '#4338ca'),
         createdAt: '3 days ago',
         content: 'The construction lien release idea is gold. My brother is a general contractor and spends his entire Friday chasing subcontractor signatures.',
         likes: 15,
@@ -202,12 +214,12 @@ Below are four of the twelve deep-dive concepts explored in our research batch:
     publishedDate: 'March 3, 2026',
     featured: false,
     trendingRank: 6,
-    coverImage: HERO_FOUNDER_WORKSPACE,
-    coverCaption: 'Small business P&L review and SBA financing term analysis.',
+    coverImage: articleCoffeeBrand,
+    coverCaption: 'Physical retail packaging, inventory modernization, and offline fulfillment systems.',
     author: {
       name: 'Julian Sterling',
       role: 'Principal Editor, Startup Sphere',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+      avatar: AVATAR_JULIAN,
       bio: 'Investigates bootstrapped capital structures and non-dilutive startup growth.',
     },
     summary: 'Why MBA graduates and software engineers are passing on tech incubators to acquire retiring Baby Boomer businesses with SBA 7(a) loans and modernizing their stack.',
@@ -245,12 +257,12 @@ Rather than taking the 99% failure gamble of consumer startups, entrepreneurial 
     publishedDate: 'February 27, 2026',
     featured: false,
     trendingRank: 3,
-    coverImage: ARTICLE_AI_STARTUP_LAB,
-    coverCaption: 'Growth engineering team building real-time marketing attribution funnels.',
+    coverImage: articleGrowthAnalytics,
+    coverCaption: 'Growth attribution models and real-time organic conversion funnels.',
     author: {
       name: 'Maya Lin',
       role: 'Growth Lead, HyperScale Partners',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
+      avatar: AVATAR_MAYA,
       bio: 'Growth advisor for product-led tech companies. Pioneered engineering-as-marketing frameworks.',
     },
     summary: 'A step-by-step teardown of how engineering interactive calculators and open databases created a self-sustaining organic referral engine with near-zero paid spend.',
@@ -295,12 +307,12 @@ Each tool loaded in under 200 milliseconds, required no login, and concluded wit
     publishedDate: 'February 20, 2026',
     featured: false,
     trendingRank: 8,
-    coverImage: ARTICLE_FINTECH_GROWTH,
-    coverCaption: 'Strategic enterprise pipeline mapping and multi-stakeholder contract negotiations.',
+    coverImage: articleFintechGrowth,
+    coverCaption: 'Strategic enterprise pipeline mapping, term sheets, and multi-stakeholder contract negotiations.',
     author: {
       name: 'Elena Rostova',
       role: 'Founding Partner, Meridian Capital',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+      avatar: AVATAR_ELENA,
       bio: 'Ex-operator turned early-stage enterprise software investor.',
     },
     summary: 'A tactical handbook for technical founders navigating enterprise procurement, security reviews, champion identification, and contract pricing.',
@@ -334,12 +346,12 @@ Eight times out of ten, the manager volunteers their internal frustrations and e
     publishedDate: 'February 15, 2026',
     featured: false,
     trendingRank: 5,
-    coverImage: HERO_FOUNDER_WORKSPACE,
-    coverCaption: 'Late-night review notes and reflective founder journaling.',
+    coverImage: articleFounderLateNight,
+    coverCaption: 'Reflective evening planning and founder endurance routines.',
     author: {
       name: 'Julian Sterling',
       role: 'Principal Editor, Startup Sphere',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+      avatar: AVATAR_JULIAN,
       bio: 'Investigates bootstrapped capital structures and non-dilutive startup growth.',
     },
     summary: 'A candid examination of founder psychology, cognitive overload, emotional isolation, and pragmatic protocols to protect mental clarity during high-stress startup phases.',
@@ -376,12 +388,12 @@ Paul Graham famously dubbed the period between initial launch excitement and tru
     publishedDate: 'February 10, 2026',
     featured: false,
     trendingRank: 7,
-    coverImage: ARTICLE_FINTECH_GROWTH,
+    coverImage: articleFintechGrowth,
     coverCaption: 'Venture capital terms and cap table simulation modeling.',
     author: {
       name: 'Elena Rostova',
       role: 'Founding Partner, Meridian Capital',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+      avatar: AVATAR_ELENA,
       bio: 'Ex-operator turned early-stage enterprise software investor.',
     },
     summary: 'A rigorous mathematical breakdown of startup equity dilution, SAFE stack compounding, and how to avoid owning only 12% of your business at Series A.',
@@ -421,12 +433,12 @@ What many founders fail to calculate is the stacking effect. When you sign four 
     publishedDate: 'February 4, 2026',
     featured: false,
     trendingRank: 9,
-    coverImage: ARTICLE_AI_STARTUP_LAB,
-    coverCaption: 'AI inference pipeline profiling and token optimization dashboard.',
+    coverImage: articleAiStartupLab,
+    coverCaption: 'Contemporary engineering studio developing scalable AI architectures.',
     author: {
       name: 'Maya Lin',
       role: 'Growth Lead, HyperScale Partners',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
+      avatar: AVATAR_MAYA,
       bio: 'Growth advisor for product-led tech companies.',
     },
     summary: 'How fast-growing startups keep API inference costs below 6% of revenue using model routing, caching, and structured JSON outputs.',
@@ -460,12 +472,12 @@ In 2026, high-margin AI companies operate tiered model routing:
     publishedDate: 'January 28, 2026',
     featured: false,
     trendingRank: 10,
-    coverImage: ARTICLE_COFFEE_BRAND,
+    coverImage: articleMicroSaasCode,
     coverCaption: 'Lean cross-functional operations utilizing multi-agent coordination.',
     author: {
       name: 'Julian Sterling',
       role: 'Principal Editor, Startup Sphere',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+      avatar: AVATAR_JULIAN,
       bio: 'Investigates bootstrapped capital structures and non-dilutive startup growth.',
     },
     summary: 'Inside the operational playbook of hyper-lean tech companies generating $3M+ per employee using deterministic autonomous agents.',

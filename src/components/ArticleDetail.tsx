@@ -243,6 +243,11 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
             alt={article.title}
             referrerPolicy="no-referrer"
             className="w-full aspect-[16/9] object-cover"
+            onError={(e) => {
+              const target = e.currentTarget;
+              target.onerror = null;
+              target.src = '/images/hero_founder_workspace.jpg';
+            }}
           />
           {article.coverCaption && (
             <p className="p-3 text-xs text-stone-500 bg-stone-50 border-t border-stone-200 italic font-editorial">
@@ -518,6 +523,11 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                       alt={rel.title}
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src = '/images/hero_founder_workspace.jpg';
+                      }}
                     />
                   </div>
                   <span className="text-xs font-medium text-stone-500 block mb-1">{rel.category}</span>

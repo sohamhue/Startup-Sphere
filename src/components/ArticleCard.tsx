@@ -32,17 +32,9 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500 ease-out"
             loading="lazy"
             onError={(e) => {
-              // Fallback for image load failure
               const target = e.currentTarget;
-              target.style.display = 'none';
-              const parent = target.parentElement;
-              if (parent) {
-                parent.innerHTML = `
-                  <div class="w-full h-full flex items-center justify-center bg-stone-100 p-6 text-stone-400">
-                    <span class="text-xs uppercase tracking-widest font-mono">${article.category}</span>
-                  </div>
-                `;
-              }
+              target.onerror = null;
+              target.src = '/images/hero_founder_workspace.jpg';
             }}
           />
           <button

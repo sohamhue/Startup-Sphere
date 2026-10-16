@@ -97,6 +97,11 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover cursor-pointer hover:scale-102 transition-transform duration-700 ease-out"
             onClick={() => onSelect(article)}
+            onError={(e) => {
+              const target = e.currentTarget;
+              target.onerror = null;
+              target.src = '/images/hero_founder_workspace.jpg';
+            }}
           />
           {article.coverCaption && (
             <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white text-xs">
