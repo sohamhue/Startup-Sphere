@@ -84,7 +84,8 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard?.writeText(window.location.href);
+    const cleanUrl = `https://startup-sphere.vercel.app/articles/${article.slug}`;
+    navigator.clipboard?.writeText(cleanUrl);
     setCopiedLink(true);
     setTimeout(() => setCopiedLink(false), 2500);
   };
@@ -93,11 +94,18 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
     e.preventDefault();
     if (!newCommentContent.trim()) return;
 
+    const initials = (newCommentName.trim() || 'AN')
+      .split(' ')
+      .map((w) => w[0])
+      .slice(0, 2)
+      .join('')
+      .toUpperCase();
+
     const newComment: Comment = {
-      id: `c-${Date.now()}`,
-      authorName: newCommentName.trim() || 'Anonymous Entrepreneur',
+      id: `comment-${comments.length + 1}`,
+      authorName: newCommentName.trim() || 'Anonymous Founder',
       authorRole: newCommentRole.trim() || 'Startup Sphere Reader',
-      authorAvatar: `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(newCommentName || 'Reader')}`,
+      authorAvatar: `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" rx="50" fill="%2344403c"/><text x="50%" y="54%" font-family="system-ui, sans-serif" font-weight="700" font-size="36" fill="%23ffffff" dominant-baseline="middle" text-anchor="middle">${initials}</text></svg>`,
       createdAt: 'Just now',
       content: newCommentContent.trim(),
       likes: 1,

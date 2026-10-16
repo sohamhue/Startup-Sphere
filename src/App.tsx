@@ -85,13 +85,71 @@ export default function App() {
     setSavedIdeas((prev) => prev.filter((_, idx) => idx !== index));
   };
 
-  const handleSelectArticle = (article: Article) => {
-    setSelectedArticle(article);
+  // Clean URL synchronization
+  const navigateTo = (view: 'home' | 'generator' | 'runway' | 'pitchdeck' | 'saved', article?: Article | null) => {
+    setActiveView(view);
+    setSelectedArticle(article || null);
+    let path = '/';
+    if (article) {
+      path = `/articles/${article.slug}`;
+    } else if (view === 'generator') {
+      path = '/generator';
+    } else if (view === 'runway') {
+      path = '/runway-calculator';
+    } else if (view === 'pitchdeck') {
+      path = '/pitch-deck-guide';
+    } else if (view === 'saved') {
+      path = '/saved';
+    }
+
+    if (window.location.pathname !== path) {
+      window.history.pushState(null, '', path);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Sync state from current URL on load and back/forward navigation
+  useEffect(() => {
+    const syncFromUrl = () => {
+      const pathname = window.location.pathname;
+      if (pathname.startsWith('/articles/')) {
+        const slug = pathname.replace('/articles/', '').replace(/\/$/, '');
+        const found = ARTICLES.find((a) => a.slug === slug);
+        if (found) {
+          setSelectedArticle(found);
+          setActiveView('home');
+          return;
+        }
+      }
+      if (pathname === '/generator') {
+        setActiveView('generator');
+        setSelectedArticle(null);
+      } else if (pathname === '/runway-calculator') {
+        setActiveView('runway');
+        setSelectedArticle(null);
+      } else if (pathname === '/pitch-deck-guide') {
+        setActiveView('pitchdeck');
+        setSelectedArticle(null);
+      } else if (pathname === '/saved') {
+        setActiveView('saved');
+        setSelectedArticle(null);
+      } else {
+        setActiveView('home');
+        setSelectedArticle(null);
+      }
+    };
+
+    syncFromUrl();
+    window.addEventListener('popstate', syncFromUrl);
+    return () => window.removeEventListener('popstate', syncFromUrl);
+  }, []);
+
+  const handleSelectArticle = (article: Article) => {
+    navigateTo('home', article);
+  };
+
   const handleBackToArticles = () => {
-    setSelectedArticle(null);
+    navigateTo('home', null);
   };
 
   const bookmarkedArticles = ARTICLES.filter((a) => bookmarkedIds.includes(a.id));
@@ -114,11 +172,7 @@ export default function App() {
       {/* 3-Zone Top Bar Navigation */}
       <Navbar
         activeView={activeView}
-        onNavigate={(view) => {
-          setActiveView(view);
-          setSelectedArticle(null);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
+        onNavigate={(view) => navigateTo(view, null)}
         savedIdeasCount={savedIdeas.length}
         bookmarkedArticlesCount={bookmarkedIds.length}
         searchQuery={searchQuery}
@@ -138,10 +192,7 @@ export default function App() {
             onToggleBookmark={handleToggleBookmark}
             allArticles={ARTICLES}
             onSelectArticle={handleSelectArticle}
-            onOpenGenerator={() => {
-              setSelectedArticle(null);
-              setActiveView('generator');
-            }}
+            onOpenGenerator={() => navigateTo('generator', null)}
           />
         ) : activeView === 'generator' ? (
           /* Unique Feature: AI Business Idea Generator */
@@ -160,7 +211,7 @@ export default function App() {
             onSelectArticle={handleSelectArticle}
             onRemoveBookmark={(id) => setBookmarkedIds((prev) => prev.filter((i) => i !== id))}
             onRemoveIdea={handleRemoveIdea}
-            onOpenGenerator={() => setActiveView('generator')}
+            onOpenGenerator={() => navigateTo('generator', null)}
           />
         ) : (
           /* Publication Home View */
@@ -172,7 +223,7 @@ export default function App() {
               onSelect={handleSelectArticle}
               isBookmarked={bookmarkedIds.includes(leadStory.id)}
               onToggleBookmark={handleToggleBookmark}
-              onOpenGenerator={() => setActiveView('generator')}
+              onOpenGenerator={() => navigateTo('generator', null)}
             />
 
             {/* Publication Filter & Section Rhythm */}
@@ -316,7 +367,7 @@ export default function App() {
                 </div>
 
                 <button
-                  onClick={() => setActiveView('generator')}
+                  onClick={() => navigateTo('generator', null)}
                   className="w-full py-3 px-4 bg-white text-stone-950 font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-stone-100 transition-colors flex items-center justify-center gap-2"
                 >
                   <Sparkles className="w-4 h-4 text-amber-700" />
@@ -338,12 +389,9 @@ export default function App() {
       <Footer
         onSelectCategory={(cat) => {
           setSelectedCategory(cat as any);
-          setSelectedArticle(null);
+          navigateTo('home', null);
         }}
-        onNavigate={(view) => {
-          setActiveView(view);
-          setSelectedArticle(null);
-        }}
+        onNavigate={(view) => navigateTo(view, null)}
       />
 
       {/* Global Quick Search Modal */}

@@ -1,14 +1,14 @@
 import { Article } from '../types/blog';
 
-// High-fidelity image assets bundled directly by Vite for guaranteed zero-breakage rendering
-import heroFounderWorkspace from '../assets/images/hero_founder_workspace_1792118947513.jpg';
-import articleAiStartupLab from '../assets/images/article_ai_startup_lab_1792118949366.jpg';
-import articleFintechGrowth from '../assets/images/article_fintech_growth_1792118949183.jpg';
-import articleCoffeeBrand from '../assets/images/article_coffee_brand_1792118948965.jpg';
-import articleGrowthAnalytics from '../assets/images/article_growth_analytics_1792120324817.jpg';
-import articleLaundromatHvac from '../assets/images/article_laundromat_hvac_1792120324768.jpg';
-import articleMicroSaasCode from '../assets/images/article_micro_saas_code_1792120325766.jpg';
-import articleFounderLateNight from '../assets/images/article_founder_late_night_1792120325552.jpg';
+// High-fidelity image assets bundled cleanly with zero random IDs or timestamps
+import heroFounderWorkspace from '../assets/images/hero_founder_workspace.jpg';
+import articleAiStartupLab from '../assets/images/article_ai_startup_lab.jpg';
+import articleFintechGrowth from '../assets/images/article_fintech_growth.jpg';
+import articleCoffeeBrand from '../assets/images/article_coffee_brand.jpg';
+import articleGrowthAnalytics from '../assets/images/article_growth_analytics.jpg';
+import articleLaundromatHvac from '../assets/images/article_laundromat_hvac.jpg';
+import articleMicroSaasCode from '../assets/images/article_micro_saas_code.jpg';
+import articleFounderLateNight from '../assets/images/article_founder_late_night.jpg';
 
 // Bulletproof author avatars generated as SVG data URIs (never blocked by adblockers, sandboxes, or CDN outages)
 const createAvatar = (initials: string, bg: string) =>
